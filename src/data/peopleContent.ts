@@ -187,6 +187,20 @@ export const TEAM_MEMBERS: PersonRecord[] = [
       alt: 'Portrait of Harikrishnan MB, Gameplay Programmer',
     },
   },
+  {
+    id: 'daunte-ogiemwenken-omoregie',
+    name: 'Daunte Ogiemwenken-Omoregie',
+    role: 'Graphics Software Engineer',
+    department: 'Engineering',
+    departments: ['Engineering', 'Graphics'],
+    areaOfWork: 'Engineering & Graphics',
+    biography:
+      'A graphics software engineer with deep expertise in low-level graphics APIs (Vulkan, DirectX 11, OpenGL) and modern graphics techniques. I try to build robust, optimized simulation and rendering software.',
+    image: {
+      url: '/assets/image/Dante.jpg',
+      alt: 'Portrait of Daunte Ogiemwenken-Omoregie, Graphics Software Engineer',
+    },
+  },
 ];
 
 /**
