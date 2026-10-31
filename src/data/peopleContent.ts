@@ -179,6 +179,20 @@ export const TEAM_MEMBERS: PersonRecord[] = [
       },
     ],
   },
+  {
+    id: 'harikrishnan-mb',
+    name: 'Harikrishnan MB',
+    role: 'Gameplay Programmer',
+    department: 'Game Development',
+    departments: ['Game Development'],
+    areaOfWork: 'Gameplay & Character Programming',
+    biography:
+      "I'm from India. I am an aspiring Unreal Engine Game Developer with a strong interest in gameplay and character programming. Right Now focused on the NPC system.",
+    image: {
+      url: '/assets/image/hari.jpg',
+      alt: 'Portrait of Harikrishnan MB, Gameplay Programmer',
+    },
+  },
 ];
 
 /**
