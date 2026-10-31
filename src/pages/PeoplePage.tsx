@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
+import { ArrowDown, ArrowRight, Plus } from 'lucide-react';
 import {
   PEOPLE_PHILOSOPHY_PRINCIPLES,
   TEAM_DEPARTMENTS,
@@ -97,32 +97,9 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
           {person.name}
         </h3>
 
-        {/* Position / Role & Links side-by-side separated by a dot with clean simple design */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs sm:text-[13px] font-medium text-white/80 mt-0.5">
-          <span>{person.role}</span>
-          {person.links && person.links.length > 0 ? (
-            <>
-              {person.links.map((link) => {
-                const isExternal = link.href.startsWith('http');
-                return (
-                  <React.Fragment key={link.label}>
-                    <span className="text-white/40" aria-hidden="true">·</span>
-                    <a
-                      href={link.href}
-                      target={isExternal ? '_blank' : undefined}
-                      rel={isExternal ? 'noopener noreferrer' : undefined}
-                      onClick={(e) => e.stopPropagation()}
-                      aria-label={`${person.name} — ${link.label}`}
-                      className="text-white/85 hover:text-[var(--color-accent)] inline-flex items-center gap-0.5 transition-colors underline-offset-2 hover:underline"
-                    >
-                      <span>{link.label}</span>
-                      <ArrowUpRight className="w-3 h-3 opacity-70" aria-hidden="true" />
-                    </a>
-                  </React.Fragment>
-                );
-              })}
-            </>
-          ) : null}
+        {/* Position / Role */}
+        <div className="text-xs sm:text-[13px] font-medium text-white/80 mt-0.5">
+          {person.role}
         </div>
 
         {/* Bio text fading in and out smoothly on hover (and tap on mobile) */}

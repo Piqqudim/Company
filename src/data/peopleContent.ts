@@ -172,12 +172,6 @@ export const TEAM_MEMBERS: PersonRecord[] = [
       url: '/assets/image/Yehoshua.png',
       alt: 'Portrait of Chukwufumanya Isu',
     },
-    links: [
-      {
-        label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/chukwufumanyaisu/',
-      },
-    ],
   },
   {
     id: 'harikrishnan-mb',
@@ -192,12 +186,6 @@ export const TEAM_MEMBERS: PersonRecord[] = [
       url: '/assets/image/hari.jpg',
       alt: 'Portrait of Harikrishnan MB, Gameplay Programmer',
     },
-    links: [
-      {
-        label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/harikrishnan-mb/',
-      },
-    ],
   },
 ];
 
