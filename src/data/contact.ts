@@ -47,7 +47,7 @@ export interface ContactConfig {
 }
 
 export const contactConfig: ContactConfig = {
-  email: 'piqqidimLTD@gmail.com',
+  email: undefined,
   phone: undefined,
   address: undefined,
   socialLinks: [],

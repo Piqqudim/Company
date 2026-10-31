@@ -337,13 +337,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <div className="pt-2 flex flex-wrap items-center justify-between gap-4">
             <Text variant="small" tone="muted">
               Fields marked with <span className="text-[var(--color-accent)]">*</span> are required.
-              Inquiries are delivered directly to{' '}
-              <a
-                href="mailto:piqqidimLTD@gmail.com"
-                className="text-[var(--color-accent)] hover:underline"
-              >
-                piqqidimLTD@gmail.com
-              </a>.
             </Text>
 
             <Button

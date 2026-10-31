@@ -78,7 +78,7 @@ export async function submitContactInquiry(
         return {
           ok: true,
           code: 'SUCCESS',
-          message: `Your inquiry has been received and forwarded to Piqqudim (${recipientEmail}). We will get back to you shortly.`,
+          message: 'Your inquiry has been received. We will review your message and get back to you shortly.',
           mailtoUrl,
         };
       }
@@ -99,7 +99,7 @@ export async function submitContactInquiry(
   return {
     ok: true,
     code: 'MAILTO_DISPATCH',
-    message: `Your inquiry has been prepared for ${recipientEmail}. We've opened your email app with your message, or you can send directly using the button below.`,
+    message: "Your inquiry has been prepared. We've opened your email app with your message, or you can send directly using the button below.",
     mailtoUrl,
   };
 }
