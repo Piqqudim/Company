@@ -46,6 +46,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     'idle' | 'validation-error' | 'submitting' | 'success' | 'service-error'
   >('idle');
   const [serviceStatusMessage, setServiceStatusMessage] = useState('');
+  const [lastMailtoUrl, setLastMailtoUrl] = useState<string | null>(null);
 
   const validateFields = (): boolean => {
     const errors: FieldErrors = {};
@@ -94,6 +95,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     if (result.ok) {
       setSubmitState('success');
       setServiceStatusMessage(result.message);
+      if (result.mailtoUrl) {
+        setLastMailtoUrl(result.mailtoUrl);
+      }
     } else {
       setSubmitState('service-error');
       setServiceStatusMessage(result.message);
@@ -109,6 +113,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     setFieldErrors({});
     setSubmitState('idle');
     setServiceStatusMessage('');
+    setLastMailtoUrl(null);
   };
 
   return (
@@ -121,14 +126,25 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         >
           <div className="flex items-center gap-2.5 text-sm font-semibold text-[var(--color-success)]">
             <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
-            <span>Inquiry Delivered</span>
+            <span>Inquiry Processed</span>
           </div>
           <Text variant="body" tone="primary">
             {serviceStatusMessage}
           </Text>
-          <Button variant="outline" size="sm" onClick={handleResetForm}>
-            Send another message
-          </Button>
+          <div className="pt-2 flex flex-wrap items-center gap-3">
+            {lastMailtoUrl ? (
+              <a
+                href={lastMailtoUrl}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-[var(--radius-sm)] text-xs font-semibold bg-[var(--color-accent)] text-[var(--color-button-text)] hover:opacity-90 transition-opacity"
+              >
+                <span>Open in Email App</span>
+                <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </a>
+            ) : null}
+            <Button variant="outline" size="sm" onClick={handleResetForm}>
+              Send another message
+            </Button>
+          </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -321,6 +337,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <div className="pt-2 flex flex-wrap items-center justify-between gap-4">
             <Text variant="small" tone="muted">
               Fields marked with <span className="text-[var(--color-accent)]">*</span> are required.
+              Inquiries are delivered directly to{' '}
+              <a
+                href="mailto:piqqidimLTD@gmail.com"
+                className="text-[var(--color-accent)] hover:underline"
+              >
+                piqqidimLTD@gmail.com
+              </a>.
             </Text>
 
             <Button

@@ -204,7 +204,7 @@ export const TEAM_MEMBERS: PersonRecord[] = [
   {
     id: 'ephraim-ubani',
     name: 'Ephraim Ubani',
-    role: 'Script Writer',
+    role: 'Video Game Writer',
     department: 'Game Development',
     departments: ['Game Development', 'Leadership', 'Design'],
     areaOfWork: 'Narrative Design',

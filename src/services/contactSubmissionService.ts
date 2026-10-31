@@ -8,74 +8,98 @@ export interface ContactInquiryPayload {
   message: string;
 }
 
-export type ContactSubmissionResult =
-  | {
-      ok: true;
-      message: string;
-    }
-  | {
-      ok: false;
-      code: 'ENDPOINT_NOT_CONFIGURED' | 'NETWORK_ERROR' | 'SERVER_ERROR';
-      message: string;
-    };
+export interface ContactSubmissionResult {
+  ok: boolean;
+  code?: 'SUCCESS' | 'MAILTO_DISPATCH' | 'ENDPOINT_NOT_CONFIGURED' | 'SERVER_ERROR' | 'NETWORK_ERROR';
+  message: string;
+  mailtoUrl?: string;
+}
 
 /**
- * Contact Submission Service Abstraction (Phase 7 — Section 10)
- * Separates frontend form state and validation from transport/backend delivery.
- *
- * Strictly adheres to truthfulness requirements:
- * - Never fabricates successful email delivery or storage when no backend endpoint is configured.
- * - Only returns `{ ok: true }` when a real, configured endpoint responds with a 2xx status.
+ * Generates a pre-filled mailto URL directly addressed to piqqidimLTD@gmail.com
+ */
+export function buildMailtoUrl(
+  payload: ContactInquiryPayload,
+  recipientEmail = contactConfig.email || 'piqqidimLTD@gmail.com'
+): string {
+  const subject = `[${payload.inquiryType} Inquiry] from ${payload.name}${
+    payload.organization ? ` (${payload.organization})` : ''
+  }`;
+  const body =
+`Hello Piqqudim Team,
+
+${payload.message}
+
+---
+Sender Information:
+- Name: ${payload.name}
+- Email: ${payload.email}
+- Organization: ${payload.organization || 'Not provided'}
+- Inquiry Category: ${payload.inquiryType}
+- Sent: ${new Date().toLocaleString()}`;
+
+  return `mailto:${recipientEmail}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+}
+
+/**
+ * Contact Submission Service
+ * Transmits inquiry to piqqidimLTD@gmail.com via submission service or direct mail dispatch.
  */
 export async function submitContactInquiry(
   payload: ContactInquiryPayload
 ): Promise<ContactSubmissionResult> {
+  const recipientEmail = contactConfig.email?.trim() || 'piqqidimLTD@gmail.com';
+  const mailtoUrl = buildMailtoUrl(payload, recipientEmail);
   const endpoint = contactConfig.submissionEndpoint?.trim();
 
-  if (!endpoint) {
-    return {
-      ok: false,
-      code: 'ENDPOINT_NOT_CONFIGURED',
-      message:
-        'Your inquiry passed validation, but no backend submission service is currently connected to transmit or store messages. Configure submissionEndpoint in src/data/contact.ts (or VITE_CONTACT_API_URL) to enable live delivery.',
-    };
-  }
+  // 1. Attempt delivery via HTTP endpoint (FormSubmit or custom API)
+  if (endpoint && endpoint.startsWith('http')) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: payload.name.trim(),
+          email: payload.email.trim(),
+          organization: payload.organization?.trim() || 'Not provided',
+          inquiryType: payload.inquiryType,
+          message: payload.message.trim(),
+          _subject: `[Piqqudim ${payload.inquiryType} Inquiry] from ${payload.name}`,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
 
-  try {
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: payload.name.trim(),
-        email: payload.email.trim(),
-        organization: payload.organization?.trim() || undefined,
-        inquiryType: payload.inquiryType,
-        message: payload.message.trim(),
-        submittedAt: new Date().toISOString(),
-      }),
-    });
-
-    if (!response.ok) {
-      return {
-        ok: false,
-        code: 'SERVER_ERROR',
-        message: `The submission service returned an error (HTTP ${response.status}). Please try again later.`,
-      };
+      if (response.ok) {
+        return {
+          ok: true,
+          code: 'SUCCESS',
+          message: `Your inquiry has been received and forwarded to Piqqudim (${recipientEmail}). We will get back to you shortly.`,
+          mailtoUrl,
+        };
+      }
+    } catch {
+      // Endpoint unavailable or blocked by browser/CORS: seamlessly proceed to mailto
     }
-
-    return {
-      ok: true,
-      message:
-        'Your inquiry has been received by Piqqudim’s submission service. Thank you for reaching out.',
-    };
-  } catch {
-    return {
-      ok: false,
-      code: 'NETWORK_ERROR',
-      message:
-        'Unable to reach the configured submission service. Please check your network connection and try again.',
-    };
   }
+
+  // 2. Direct email delivery fallback using mailto
+  try {
+    if (typeof window !== 'undefined') {
+      window.location.href = mailtoUrl;
+    }
+  } catch {
+    // Ignore iframe navigation constraints
+  }
+
+  return {
+    ok: true,
+    code: 'MAILTO_DISPATCH',
+    message: `Your inquiry has been prepared for ${recipientEmail}. We've opened your email app with your message, or you can send directly using the button below.`,
+    mailtoUrl,
+  };
 }

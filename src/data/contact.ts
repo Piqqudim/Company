@@ -47,7 +47,7 @@ export interface ContactConfig {
 }
 
 export const contactConfig: ContactConfig = {
-  email: undefined,
+  email: 'piqqidimLTD@gmail.com',
   phone: undefined,
   address: undefined,
   socialLinks: [],
@@ -55,7 +55,7 @@ export const contactConfig: ContactConfig = {
   submissionEndpoint:
     typeof import.meta !== 'undefined' && import.meta.env?.VITE_CONTACT_API_URL
       ? String(import.meta.env.VITE_CONTACT_API_URL)
-      : undefined,
+      : 'https://formsubmit.co/ajax/piqqidimLTD@gmail.com',
 };
 
 /**
