@@ -193,12 +193,26 @@ export const TEAM_MEMBERS: PersonRecord[] = [
     role: 'Graphics Software Engineer',
     department: 'Engineering',
     departments: ['Engineering', 'Graphics'],
-    areaOfWork: 'Engineering & Graphics',
+    areaOfWork: 'Engineering , Graphics',
     biography:
       'A graphics software engineer with deep expertise in low-level graphics APIs (Vulkan, DirectX 11, OpenGL) and modern graphics techniques. I try to build robust, optimized simulation and rendering software.',
     image: {
       url: '/assets/image/Dante.jpg',
       alt: 'Portrait of Daunte Ogiemwenken-Omoregie, Graphics Software Engineer',
+    },
+  },
+  {
+    id: 'ephraim-ubani',
+    name: 'Ephraim Ubani',
+    role: 'Games Writer',
+    department: 'Game Development',
+    departments: ['Game Development'],
+    areaOfWork: 'Narrative Design',
+    biography:
+      'Believe that the quality of stories and content we put out there, will either make us or destroy us all entirely. We have a responsibility to show the next generation, through our gameplay stories, that life is worth living and they can live it with purpose, joy, love and faith.',
+    image: {
+      url: '/assets/image/Banni.jpeg',
+      alt: 'Portrait of Ephraim Ubani, Games Writer',
     },
   },
 ];
