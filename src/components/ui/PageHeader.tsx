@@ -23,7 +23,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   description,
   metadata,
   actions,
-  surface = 'grid',
+  surface = 'primary',
 }) => {
   return (
     <Section surface={surface} spacing="md" borderBottom>

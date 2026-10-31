@@ -16,7 +16,7 @@ const surfaceClasses: Record<NonNullable<SectionProps['surface']>, string> = {
   secondary: 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)]',
   elevated: 'bg-[var(--color-bg-elevated)] text-[var(--color-text-primary)]',
   inverse: 'bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]',
-  grid: 'bg-[var(--color-bg-primary)] bg-technical-grid text-[var(--color-text-primary)]',
+  grid: 'bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]',
 };
 
 const spacingClasses: Record<NonNullable<SectionProps['spacing']>, string> = {

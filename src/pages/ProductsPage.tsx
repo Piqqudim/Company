@@ -105,7 +105,7 @@ export const ProductDetailPlaceholderPage: React.FC<{ slug: string }> = ({ slug 
             <Card surface="secondary" padding="md" className="space-y-4">
               <div
                 aria-hidden="true"
-                className="h-36 px-6 py-5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-primary)] bg-technical-grid flex items-end justify-between"
+                className="h-36 px-6 py-5 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-primary)] flex items-end justify-between"
               >
                 <span className="font-mono text-3xl font-semibold text-[var(--color-text-primary)]">
                   {product.visualAsset.monogram}

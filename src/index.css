@@ -38,8 +38,6 @@
   --color-error: #b91c1c;
   --color-error-bg: #fee2e2;
 
-  --grid-line-color: rgba(11, 122, 83, 0.055);
-
   /* ==========================================================================
      3. TYPOGRAPHY SYSTEM
      ========================================================================== */
@@ -142,7 +140,6 @@
   --color-error: #f87171;
   --color-error-bg: rgba(248, 113, 113, 0.12);
 
-  --grid-line-color: rgba(16, 185, 104, 0.06);
   color-scheme: dark;
 }
 
@@ -175,12 +172,9 @@
   }
 }
 
-/* Subtle architectural grid motif for technical sections */
+/* Technical surface motif - plain solid background responsive to theme */
 .bg-technical-grid {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+  background-image: none;
 }
 
 /* Reduced Motion Accessibility Compliance */

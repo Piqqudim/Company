@@ -65,7 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             ) : (
               <div
                 aria-hidden="true"
-                className="h-28 px-5 py-4 flex items-end justify-between bg-technical-grid"
+                className="h-28 px-5 py-4 flex items-end justify-between bg-[var(--color-bg-secondary)]"
               >
                 <span className="font-mono text-2xl font-semibold tracking-tight text-[var(--color-text-primary)]">
                   {visualAsset.monogram}
