@@ -28,6 +28,8 @@ type DepartmentFilter = 'All' | TeamDepartment;
  * Supports Name, Role, Department / Area of work, Short biography, Profile image, and Optional links.
  */
 export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const initials = person.name
     .split(' ')
     .map((part) => part[0])
@@ -36,76 +38,109 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
     .toUpperCase();
 
   return (
-    <Card
-      as="article"
-      surface="primary"
-      padding="md"
-      className="flex flex-col justify-between h-full space-y-6"
+    <article
+      tabIndex={0}
+      aria-label={`${person.name}, ${person.role} at Piqqudim`}
+      onClick={() => setIsExpanded((prev) => !prev)}
+      className="group relative rounded-[var(--radius-lg)] overflow-hidden aspect-[3/4] w-full max-w-[345px] sm:max-w-[355px] min-h-[432px] sm:min-h-[468px] bg-[var(--color-bg-secondary)] border border-[var(--color-border)] shadow-sm hover:border-[var(--color-accent)]/60 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] select-none cursor-pointer"
     >
-      <div className="space-y-4">
-        <div className="flex items-center gap-4">
-          {person.image?.url ? (
-            <img
-              src={person.image.url}
-              alt={person.image.alt || `${person.name}, ${person.role} at Piqqudim`}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              className="w-14 h-14 rounded-[var(--radius-md)] object-cover border border-[var(--color-border)] shrink-0"
-            />
-          ) : (
-            <div
-              aria-hidden="true"
-              className="w-14 h-14 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg-secondary)] flex items-center justify-center font-mono text-sm font-semibold text-[var(--color-accent)] shrink-0"
-            >
-              {initials}
-            </div>
-          )}
-
-          <div className="space-y-1 min-w-0">
-            <div className="flex flex-wrap items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
-              <span className="font-semibold text-[var(--color-accent)]">{person.department}</span>
-              {person.areaOfWork ? (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span>{person.areaOfWork}</span>
-                </>
-              ) : null}
-            </div>
-            <Heading as="h3" variant="h3" className="truncate">
-              {person.name}
-            </Heading>
-            <div className="text-xs font-medium text-[var(--color-text-secondary)]">
-              {person.role}
-            </div>
-          </div>
+      {/* Background Image filling the whole card box */}
+      {person.image?.url ? (
+        <img
+          src={person.image.url}
+          alt={person.image.alt || `${person.name}, ${person.role} at Piqqudim`}
+          referrerPolicy="no-referrer"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full bg-gradient-to-br from-[var(--color-bg-secondary)] via-[var(--color-bg-elevated)] to-[var(--color-bg-primary)] flex items-center justify-center"
+        >
+          <span className="font-mono text-5xl font-bold text-[var(--color-accent)] opacity-30">
+            {initials}
+          </span>
         </div>
+      )}
 
-        <Text variant="small" tone="secondary">
-          {person.biography}
-        </Text>
+      {/* Atmospheric dark gradient overlay ensuring high contrast readability */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 via-45% to-transparent group-hover:via-black/70 transition-colors duration-500 pointer-events-none"
+      />
+
+      {/* Subtle hover hint badge at top right */}
+      <div className="absolute top-3.5 right-3.5 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase rounded-full bg-black/60 backdrop-blur-md text-white/80 border border-white/20">
+          Profile
+        </span>
       </div>
 
-      {person.links && person.links.length > 0 ? (
-        <div className="pt-4 border-t border-[var(--color-border)] flex flex-wrap items-center gap-4">
-          {person.links.map((link) => {
-            const isExternal = link.href.startsWith('http');
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                external={isExternal}
-                variant="accent"
-                aria-label={`${person.name} — ${link.label}`}
-                className="text-xs font-semibold"
-              >
-                <span>{link.label}</span>
-                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-              </Link>
-            );
-          })}
+      {/* Bottom Information Container */}
+      <div className="absolute inset-x-0 bottom-0 p-5 z-10 flex flex-col justify-end text-white">
+        {/* Department / Area of Work */}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono tracking-wider uppercase text-[var(--color-accent)] mb-1">
+          <span className="font-semibold">{person.department}</span>
+          {person.areaOfWork ? (
+            <>
+              <span className="text-white/40" aria-hidden="true">·</span>
+              <span className="text-white/80 font-sans normal-case tracking-normal text-xs">
+                {person.areaOfWork}
+              </span>
+            </>
+          ) : null}
         </div>
-      ) : null}
-    </Card>
+
+        {/* Name */}
+        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+          {person.name}
+        </h3>
+
+        {/* Role */}
+        <div className="text-xs sm:text-sm font-medium text-white/80 mt-0.5">
+          {person.role}
+        </div>
+
+        {/* Bio text fading in and out smoothly on hover (and tap on mobile) */}
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-out ${
+            isExpanded
+              ? 'opacity-100 max-h-80 translate-y-0 mt-3 pt-3'
+              : 'opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-80 group-hover:translate-y-0 group-hover:mt-3 group-hover:pt-3'
+          } border-t border-white/15`}
+        >
+          <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal">
+            {person.biography}
+          </p>
+        </div>
+
+        {/* External Links (e.g., LinkedIn) */}
+        {person.links && person.links.length > 0 ? (
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="pt-3 mt-3 border-t border-white/15 flex flex-wrap items-center gap-2.5"
+          >
+            {person.links.map((link) => {
+              const isExternal = link.href.startsWith('http');
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  aria-label={`${person.name} — ${link.label}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all cursor-pointer"
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
+              );
+            })}
+          </div>
+        ) : null}
+      </div>
+    </article>
   );
 };
 
@@ -120,7 +155,11 @@ export const PeoplePage: React.FC = () => {
   const visibleMembers =
     selectedDepartment === 'All'
       ? TEAM_MEMBERS
-      : TEAM_MEMBERS.filter((member) => member.department === selectedDepartment);
+      : TEAM_MEMBERS.filter(
+          (member) =>
+            member.department === selectedDepartment ||
+            (member.departments && member.departments.includes(selectedDepartment))
+        );
 
   const visibleDepartments =
     selectedDepartment === 'All'
@@ -158,8 +197,8 @@ export const PeoplePage: React.FC = () => {
             </Text>
 
             <Text variant="body" tone="secondary" measure>
-              Built from Africa and designed for the world, our work relies on curiosity,
-              technical discipline, and shared long-term ambition.
+              Rendering the unseen, our work relies on curiosity, technical discipline, and shared
+              long-term ambition.
             </Text>
           </div>
 
@@ -188,7 +227,7 @@ export const PeoplePage: React.FC = () => {
               </div>
 
               <div className="pt-1 flex items-center justify-between text-xs text-[var(--color-text-muted)]">
-                <span>Built from Africa. Designed for the world.</span>
+                <span>Rendering the unseen.</span>
                 <Link href="/careers" variant="accent" className="text-xs font-semibold">
                   <span>Careers →</span>
                 </Link>

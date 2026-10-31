@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <!-- Crisp architectural white/platinum surface gradient for main body -->
+    <linearGradient id="piq-surface" x1="65" y1="26" x2="175" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="65%" stop-color="#F0F5F2" />
+      <stop offset="100%" stop-color="#D8E3DD" />
+    </linearGradient>
+
+    <!-- Vibrant emerald green bevel extrusion gradient -->
+    <linearGradient id="piq-bevel" x1="65" y1="55" x2="168" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#054D28" />
+      <stop offset="45%" stop-color="#0E9F58" />
+      <stop offset="75%" stop-color="#1CE07E" />
+      <stop offset="100%" stop-color="#086B3A" />
+    </linearGradient>
+
+    <!-- Left pillar vertical green bevel gradient -->
+    <linearGradient id="piq-pillar-bevel" x1="91" y1="96" x2="98" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B968" />
+      <stop offset="50%" stop-color="#22E584" />
+      <stop offset="100%" stop-color="#075E33" />
+    </linearGradient>
+
+    <!-- Subtle drop shadow for depth -->
+    <filter id="piq-elevation" x="-12%" y="-12%" width="124%" height="124%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Premium architectural dark squircle backing tile for contrast on light and dark browser tabs -->
+  <rect width="240" height="240" rx="52" fill="#090B0A" />
+  <rect x="2" y="2" width="236" height="236" rx="50" fill="none" stroke="#1C2721" stroke-width="3" />
+
+  <g filter="url(#piq-elevation)">
+    <!-- 1. PCB CIRCUIT TRACES (Left & Right) -->
+    <g stroke="#10B968" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Left Primary Trace + Double Ring Node -->
+      <path d="M 68 147 L 59 147 L 49 137" stroke-width="3.5" />
+      <circle cx="44.5" cy="132.5" r="5.5" stroke-width="2.5" fill="#090B0A" />
+      <circle cx="44.5" cy="132.5" r="2.3" stroke-width="1.5" fill="#10B968" />
+      <!-- Left Secondary Parallel Trace -->
+      <path d="M 63 155 L 56 155 L 49 148" stroke-width="2.5" opacity="0.9" />
+
+      <!-- Right Primary Trace + Double Ring Node -->
+      <path d="M 176 101 L 185 101 L 196 90" stroke-width="3.5" />
+      <circle cx="200.5" cy="85.5" r="5.5" stroke-width="2.5" fill="#090B0A" />
+      <circle cx="200.5" cy="85.5" r="2.3" stroke-width="1.5" fill="#10B968" />
+      <!-- Right Secondary Parallel Trace -->
+      <path d="M 176 108 L 189 108 L 198 99" stroke-width="2.5" opacity="0.9" />
+    </g>
+
+    <!-- 2. LEFT ANGLED VERTICAL PILLAR (Bevel + White Surface) -->
+    <!-- Right-side emerald 3D extrusion bevel -->
+    <path
+      d="M 90 97 L 97 99.5 L 97 172.5 L 90 176 Z"
+      fill="url(#piq-pillar-bevel)"
+    />
+    <!-- Bottom emerald-metallic chamfer -->
+    <path
+      d="M 69 186 L 90 176 L 97 172.5 L 73 188 Z"
+      fill="#0B7A53"
+    />
+    <!-- Main white front face of left pillar -->
+    <path
+      d="M 69 106 L 90 97 L 90 176 L 69 186 Z"
+      fill="url(#piq-surface)"
+      stroke="#B8C9C0"
+      stroke-width="1"
+    />
+
+    <!-- 3. CENTER CORE CIRCULAR NODE (Green Lower Rim + White Disc) -->
+    <circle cx="124" cy="107.5" r="13.5" fill="url(#piq-bevel)" />
+    <circle
+      cx="124"
+      cy="104"
+      r="13.5"
+      fill="url(#piq-surface)"
+      stroke="#B8C9C0"
+      stroke-width="1"
+    />
+
+    <!-- 4. MAIN ARCH, RIGHT LOOP & LOWER TERMINAL NODE -->
+    <!-- Inner & Lower 3D Emerald Bevel Extrusion Layer -->
+    <path
+      d="M 66 54
+         C 66 69, 77 77, 94 77
+         L 141 77
+         C 155 77, 163 86, 163 101
+         C 163 116, 151 128, 134 139
+         L 124 146
+         C 119 149, 118 153, 118 159
+         L 118 171
+         A 13.5 13.5 0 1 0 135 171
+         L 135 157
+         C 135 154, 137 151, 141 148
+         L 153 140
+         C 169 129, 177 115, 177 96
+         L 177 68
+         C 177 49, 163 42, 143 42
+         L 88 42
+         C 77 42, 72 36, 72 28
+         C 67 36, 66 45, 66 54 Z"
+      fill="url(#piq-bevel)"
+    />
+
+    <!-- Foreground Crisp Architectural Body -->
+    <path
+      d="M 73 25
+         C 76 36, 84 41, 98 41
+         L 145 41
+         C 165 41, 177 52, 177 71
+         L 177 95
+         C 177 116, 166 130, 147 142
+         L 134 150
+         C 132 151.5, 131 154, 131 157
+         L 131 169
+         A 12.5 12.5 0 1 1 119 169
+         L 119 152
+         C 119 147, 121 143, 126 140
+         L 140 131
+         C 156 121, 164 109, 164 94
+         L 164 87
+         C 164 76, 156 70, 143 70
+         L 94 70
+         C 76 70, 66 60, 66 45
+         C 66 37, 69 30, 73 25 Z"
+      fill="url(#piq-surface)"
+      stroke="#B8C9C0"
+      stroke-width="1"
+    />
+  </g>
+</svg>

@@ -201,7 +201,7 @@ export const AboutPage: React.FC = () => {
 
       {/* =====================================================================
           5. VISION
-          Visually distinct architectural section: Built from Africa. Designed for the world.
+          Visually distinct architectural section: Rendering the unseen.
           ===================================================================== */}
       <Section id="vision" surface="elevated" spacing="lg" borderBottom>
         <div className="max-w-[54rem] space-y-6">
@@ -210,7 +210,7 @@ export const AboutPage: React.FC = () => {
           </Badge>
 
           <Heading as="h2" variant="display" tone="primary">
-            Built from Africa. Designed for the world.
+            Rendering the unseen.
           </Heading>
 
           <Text variant="body-lg" tone="primary" measure>
@@ -491,8 +491,7 @@ export const AboutPage: React.FC = () => {
 
           <Text variant="body-lg" tone="secondary" measure>
             Piqqudim is an evolving company committed to the patient work of building software,
-            graphics technology, developer tools, and intelligent systems—built from Africa and
-            designed for the world.
+            graphics technology, developer tools, and intelligent systems—rendering the unseen.
           </Text>
 
           <div className="pt-2 flex flex-wrap items-center gap-3.5">

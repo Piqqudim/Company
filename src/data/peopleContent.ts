@@ -34,6 +34,7 @@ export interface PersonRecord {
   name: string;
   role: string;
   department: TeamDepartment;
+  departments?: TeamDepartment[];
   areaOfWork: string;
   biography: string;
   image?: {
@@ -157,12 +158,28 @@ export const TEAM_DEPARTMENTS: DepartmentSpec[] = [
   },
 ];
 
-/**
- * Editable Team Member Registry
- * Adding a new team member requires only adding a PersonRecord entry to this array.
- * Intentionally empty until verified team profiles and biographies are supplied.
- */
-export const TEAM_MEMBERS: PersonRecord[] = [];
+export const TEAM_MEMBERS: PersonRecord[] = [
+  {
+    id: 'chukwufumanya-isu',
+    name: 'Yehoshua Isu',
+    role: 'Director',
+    department: 'Leadership',
+    departments: ['Leadership', 'Engineering', 'Graphics', 'Game Development'],
+    areaOfWork: 'Engineering, Graphics & Game Development',
+    biography:
+      'Deep beneath the waters, where silence meets the soul, accompanied by sounds beyond the ordinary, no noise, no worldly desires — just the peace of God. That is a dream come true.',
+    image: {
+      url: '/assets/image/Yehoshua.png',
+      alt: 'Portrait of Chukwufumanya Isu',
+    },
+    links: [
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/chukwufumanyaisu/',
+      },
+    ],
+  },
+];
 
 /**
  * Section 6: Building Together

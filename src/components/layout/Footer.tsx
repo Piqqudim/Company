@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
               <span>{CORPORATE_IDENTITY.name}</span>
             </Link>
             <Text variant="small" tone="primary" className="font-semibold">
-              Built from Africa. Designed for the world.
+              Rendering the unseen.
             </Text>
             <Text variant="small" tone="secondary" className="max-w-[38ch]">
               {CORPORATE_IDENTITY.coreDefinition}

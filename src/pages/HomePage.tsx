@@ -327,7 +327,7 @@ export const HomePage: React.FC = () => {
 
       {/* =====================================================================
           6. VISION SECTION
-          Core positioning: Built from Africa. Designed for the world.
+          Core positioning: Rendering the unseen.
           ===================================================================== */}
       <Section id="vision" surface="grid" spacing="lg" borderBottom>
         <div className="max-w-[56rem] space-y-6">
@@ -336,7 +336,7 @@ export const HomePage: React.FC = () => {
           </Badge>
 
           <Heading as="h2" variant="display">
-            Built from Africa. Designed for the world.
+            Rendering the unseen.
           </Heading>
 
           <Text variant="body-lg" tone="primary" measure>

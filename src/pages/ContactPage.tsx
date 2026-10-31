@@ -162,7 +162,7 @@ export const ContactPage: React.FC = () => {
                   Corporate Positioning
                 </Text>
                 <div className="text-sm font-semibold text-[var(--color-text-primary)]">
-                  Built from Africa. Designed for the world.
+                  Rendering the unseen.
                 </div>
                 <Text variant="small" tone="secondary">
                   Started Here. Built Everywhere.

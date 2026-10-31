@@ -503,7 +503,7 @@ export const CareersPage: React.FC = () => {
 
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-[var(--color-text-primary)]">
-                  Built from Africa. Designed for the world.
+                  Rendering the unseen.
                 </div>
                 <Text variant="small" tone="secondary">
                   Contributors at Piqqudim work on foundational technology, engines, tools, and
@@ -571,7 +571,7 @@ export const CareersPage: React.FC = () => {
                 Origin & Reach
               </div>
               <Heading as="h3" variant="h3">
-                Built from Africa. Designed for the world.
+                Rendering the unseen.
               </Heading>
               <Text variant="small" tone="secondary">
                 Our origin in Africa anchors our perspective while every tool, engine, and platform

@@ -45,7 +45,7 @@ export interface PhilosophyPrinciple {
 
 export const CORPORATE_IDENTITY = {
   name: 'Piqqudim',
-  positioning: 'Built from Africa. Designed for the world.',
+  positioning: 'Rendering the unseen.',
   secondaryPositioning: 'Started Here. Built Everywhere.',
   mantra: 'We build.',
   coreDefinition:
@@ -98,7 +98,7 @@ export const ROUTE_SPECIFICATIONS: Record<string, RouteSpecification> = {
   '/': {
     path: '/',
     title: 'Piqqudim — Official Corporate Website',
-    seoTitle: 'Piqqudim — Built from Africa. Designed for the world.',
+    seoTitle: 'Piqqudim — Rendering the unseen.',
     seoDescription:
       'Piqqudim is a technology company building software, graphics technology, game technology, developer tools, digital platforms, and intelligent systems.',
     kicker: '00. Corporate Homepage',
@@ -110,7 +110,7 @@ export const ROUTE_SPECIFICATIONS: Record<string, RouteSpecification> = {
       'What We Do (6 Core Engineering Disciplines)',
       'Technology Philosophy & Engineering Mindset',
       'Product Ecosystem & Umbra Engine Context',
-      'Vision ("Built from Africa. Designed for the world.")',
+      'Vision ("Rendering the unseen.")',
       'People, Careers, News & Closing Contact CTA',
     ],
   },
@@ -126,7 +126,7 @@ export const ROUTE_SPECIFICATIONS: Record<string, RouteSpecification> = {
     plannedModules: [
       'Company Thesis & Long-Term Ambition',
       'Engineering Philosophy ("We build.")',
-      'Origin & Global Perspective (Built from Africa. Designed for the world.)',
+      'Origin & Global Perspective (Rendering the unseen.)',
       'Corporate Structure & Governance',
     ],
   },
