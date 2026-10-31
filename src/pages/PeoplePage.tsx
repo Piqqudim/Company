@@ -42,7 +42,7 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
       tabIndex={0}
       aria-label={`${person.name}, ${person.role} at Piqqudim`}
       onClick={() => setIsExpanded((prev) => !prev)}
-      className="group relative rounded-[var(--radius-lg)] overflow-hidden aspect-[3/4] w-full max-w-[345px] sm:max-w-[355px] min-h-[432px] sm:min-h-[468px] bg-[var(--color-bg-secondary)] border border-[var(--color-border)] shadow-sm hover:border-[var(--color-accent)]/60 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] select-none cursor-pointer"
+      className="group relative rounded-[var(--radius-lg)] overflow-hidden aspect-[3/4] w-full max-w-[276px] sm:max-w-[284px] min-h-[345px] sm:min-h-[375px] bg-[var(--color-bg-secondary)] border border-[var(--color-border)] shadow-sm hover:border-[var(--color-accent)]/60 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] select-none cursor-pointer"
     >
       {/* Background Image filling the whole card box */}
       {person.image?.url ? (
@@ -58,7 +58,7 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
           aria-hidden="true"
           className="absolute inset-0 w-full h-full bg-gradient-to-br from-[var(--color-bg-secondary)] via-[var(--color-bg-elevated)] to-[var(--color-bg-primary)] flex items-center justify-center"
         >
-          <span className="font-mono text-5xl font-bold text-[var(--color-accent)] opacity-30">
+          <span className="font-mono text-4xl font-bold text-[var(--color-accent)] opacity-30">
             {initials}
           </span>
         </div>
@@ -71,21 +71,21 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
       />
 
       {/* Subtle hover hint badge at top right */}
-      <div className="absolute top-3.5 right-3.5 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <span className="px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase rounded-full bg-black/60 backdrop-blur-md text-white/80 border border-white/20">
+      <div className="absolute top-3 right-3 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="px-1.5 py-0.5 text-[9px] font-mono tracking-wider uppercase rounded-full bg-black/60 backdrop-blur-md text-white/80 border border-white/20">
           Profile
         </span>
       </div>
 
       {/* Bottom Information Container */}
-      <div className="absolute inset-x-0 bottom-0 p-5 z-10 flex flex-col justify-end text-white">
+      <div className="absolute inset-x-0 bottom-0 p-4 z-10 flex flex-col justify-end text-white">
         {/* Department / Area of Work */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono tracking-wider uppercase text-[var(--color-accent)] mb-1">
+        <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono tracking-wider uppercase text-[var(--color-accent)] mb-1">
           <span className="font-semibold">{person.department}</span>
           {person.areaOfWork ? (
             <>
               <span className="text-white/40" aria-hidden="true">·</span>
-              <span className="text-white/80 font-sans normal-case tracking-normal text-xs">
+              <span className="text-white/80 font-sans normal-case tracking-normal text-[11px]">
                 {person.areaOfWork}
               </span>
             </>
@@ -93,52 +93,50 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
         </div>
 
         {/* Name */}
-        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
+        <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
           {person.name}
         </h3>
 
-        {/* Role */}
-        <div className="text-xs sm:text-sm font-medium text-white/80 mt-0.5">
-          {person.role}
+        {/* Position / Role & Links side-by-side separated by a dot with clean simple design */}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs sm:text-[13px] font-medium text-white/80 mt-0.5">
+          <span>{person.role}</span>
+          {person.links && person.links.length > 0 ? (
+            <>
+              {person.links.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                return (
+                  <React.Fragment key={link.label}>
+                    <span className="text-white/40" aria-hidden="true">·</span>
+                    <a
+                      href={link.href}
+                      target={isExternal ? '_blank' : undefined}
+                      rel={isExternal ? 'noopener noreferrer' : undefined}
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label={`${person.name} — ${link.label}`}
+                      className="text-white/85 hover:text-[var(--color-accent)] inline-flex items-center gap-0.5 transition-colors underline-offset-2 hover:underline"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-70" aria-hidden="true" />
+                    </a>
+                  </React.Fragment>
+                );
+              })}
+            </>
+          ) : null}
         </div>
 
         {/* Bio text fading in and out smoothly on hover (and tap on mobile) */}
         <div
           className={`overflow-hidden transition-all duration-500 ease-out ${
             isExpanded
-              ? 'opacity-100 max-h-80 translate-y-0 mt-3 pt-3'
-              : 'opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-80 group-hover:translate-y-0 group-hover:mt-3 group-hover:pt-3'
+              ? 'opacity-100 max-h-72 translate-y-0 mt-2.5 pt-2.5'
+              : 'opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-72 group-hover:translate-y-0 group-hover:mt-2.5 group-hover:pt-2.5'
           } border-t border-white/15`}
         >
-          <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal">
+          <p className="text-xs text-neutral-200 leading-relaxed font-normal">
             {person.biography}
           </p>
         </div>
-
-        {/* External Links (e.g., LinkedIn) */}
-        {person.links && person.links.length > 0 ? (
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="pt-3 mt-3 border-t border-white/15 flex flex-wrap items-center gap-2.5"
-          >
-            {person.links.map((link) => {
-              const isExternal = link.href.startsWith('http');
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={isExternal ? '_blank' : undefined}
-                  rel={isExternal ? 'noopener noreferrer' : undefined}
-                  aria-label={`${person.name} — ${link.label}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all cursor-pointer"
-                >
-                  <span>{link.label}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-                </a>
-              );
-            })}
-          </div>
-        ) : null}
       </div>
     </article>
   );
@@ -347,7 +345,7 @@ export const PeoplePage: React.FC = () => {
 
           {/* Data-Driven Team Member Profiles OR Intentional Empty State */}
           {visibleMembers.length > 0 ? (
-            <Grid cols={3} gap="md">
+            <Grid cols={4} gap="sm">
               {visibleMembers.map((person) => (
                 <PersonProfileCard key={person.id} person={person} />
               ))}
