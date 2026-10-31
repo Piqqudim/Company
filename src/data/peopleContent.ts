@@ -204,9 +204,9 @@ export const TEAM_MEMBERS: PersonRecord[] = [
   {
     id: 'ephraim-ubani',
     name: 'Ephraim Ubani',
-    role: 'Games Writer',
+    role: 'Script Writer',
     department: 'Game Development',
-    departments: ['Game Development'],
+    departments: ['Game Development', 'Leadership', 'Design'],
     areaOfWork: 'Narrative Design',
     biography:
       'Believe that the quality of stories and content we put out there, will either make us or destroy us all entirely. We have a responsibility to show the next generation, through our gameplay stories, that life is worth living and they can live it with purpose, joy, love and faith.',
