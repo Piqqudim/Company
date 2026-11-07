@@ -243,8 +243,7 @@ export const AboutPage: React.FC = () => {
 
           <div className="lg:col-span-7 space-y-5">
             <Text variant="body-lg" tone="primary" measure>
-              Serious, foundational technology can be built from Africa while being designed for a
-              global audience.
+              Rendering the unseen. Serious, foundational technology engineered for a global audience.
             </Text>
             <Text variant="body" tone="secondary" measure>
               Geography is part of our identity, not a constraint on what we can engineer. Building

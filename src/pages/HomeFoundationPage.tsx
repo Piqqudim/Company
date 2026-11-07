@@ -60,7 +60,7 @@ export const HomeFoundationPage: React.FC = () => {
             </div>
 
             <Heading as="h1" variant="display">
-              Started Here. Built Everywhere.
+              Rendering the unseen.
             </Heading>
 
             <Text variant="body-lg" tone="secondary" measure>
@@ -130,7 +130,7 @@ export const HomeFoundationPage: React.FC = () => {
               03. Positioning
             </Text>
             <Heading as="h2" variant="h4">
-              Started Here. Built Everywhere.
+              Rendering the unseen.
             </Heading>
             <Text variant="small" tone="secondary">
               Engineered with technical depth, precision, and global reach across software and
@@ -510,7 +510,7 @@ export const HomeFoundationPage: React.FC = () => {
                 <div className="lg:col-span-8">
                   {spec.variant === 'display' && (
                     <Heading as="div" variant="display">
-                      Started Here. Built Everywhere.
+                      Rendering the unseen.
                     </Heading>
                   )}
                   {spec.variant === 'h1' && (

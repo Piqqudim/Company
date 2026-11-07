@@ -165,7 +165,7 @@ export const ContactPage: React.FC = () => {
                   Rendering the unseen.
                 </div>
                 <Text variant="small" tone="secondary">
-                  Started Here. Built Everywhere.
+                  Rendering the unseen.
                 </Text>
               </Card>
             )}

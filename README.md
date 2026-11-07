@@ -172,7 +172,7 @@ Create an environment where people with different skills can contribute to meani
 
 \*\*Global ambition\*\*
 
-Build from Africa with the intention of serving a worldwide audience.
+Rendering the unseen with the intention of serving a worldwide audience.
 
 
 
@@ -1514,7 +1514,7 @@ Until a license is added to the repository, no open-source license should be ass
 
 
 
-\*\*Piqqudim — Built from Africa. Designed for the world.\*\*
+\*\*Piqqudim — Rendering the unseen.\*\*
 
 
 

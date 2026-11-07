@@ -29,6 +29,7 @@ type DepartmentFilter = 'All' | TeamDepartment;
  */
 export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const initials = person.name
     .split(' ')
@@ -45,12 +46,13 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
       className="group relative rounded-[var(--radius-lg)] overflow-hidden aspect-[3/4] w-full max-w-[276px] sm:max-w-[284px] min-h-[345px] sm:min-h-[375px] bg-[var(--color-bg-secondary)] border border-[var(--color-border)] shadow-sm hover:border-[var(--color-accent)]/60 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] select-none cursor-pointer"
     >
       {/* Background Image filling the whole card box */}
-      {person.image?.url ? (
+      {person.image?.url && !imageError ? (
         <img
           src={person.image.url}
           alt={person.image.alt || `${person.name}, ${person.role} at Piqqudim`}
           referrerPolicy="no-referrer"
           loading="lazy"
+          onError={() => setImageError(true)}
           className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
         />
       ) : (
@@ -103,17 +105,19 @@ export const PersonProfileCard: React.FC<{ person: PersonRecord }> = ({ person }
         </div>
 
         {/* Bio text fading in and out smoothly on hover (and tap on mobile) */}
-        <div
-          className={`overflow-hidden transition-all duration-500 ease-out ${
-            isExpanded
-              ? 'opacity-100 max-h-72 translate-y-0 mt-2.5 pt-2.5'
-              : 'opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-72 group-hover:translate-y-0 group-hover:mt-2.5 group-hover:pt-2.5'
-          } border-t border-white/15`}
-        >
-          <p className="text-xs text-neutral-200 leading-relaxed font-normal">
-            {person.biography}
-          </p>
-        </div>
+        {person.biography?.trim() ? (
+          <div
+            className={`overflow-hidden transition-all duration-500 ease-out ${
+              isExpanded
+                ? 'opacity-100 max-h-72 translate-y-0 mt-2.5 pt-2.5'
+                : 'opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-72 group-hover:translate-y-0 group-hover:mt-2.5 group-hover:pt-2.5'
+            } border-t border-white/15`}
+          >
+            <p className="text-xs text-neutral-200 leading-relaxed font-normal">
+              {person.biography}
+            </p>
+          </div>
+        ) : null}
       </div>
     </article>
   );

@@ -1,6 +1,6 @@
 {
   "name": "Piqqudim",
-  "description": "Official corporate website for Piqqudim — a technology company building software, graphics technology, game technology, developer tools, digital platforms, and intelligent systems. Started Here. Built Everywhere.",
+  "description": "Official corporate website for Piqqudim — a technology company building software, graphics technology, game technology, developer tools, digital platforms, and intelligent systems. Rendering the unseen.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

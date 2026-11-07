@@ -102,7 +102,7 @@ export const WHY_PIQQUDIM_THEMES: WhyPiqqudimTheme[] = [
     index: '05',
     title: 'Global ambition',
     description:
-      'Build from Africa while working toward a global audience.',
+      'Rendering the unseen while working toward a global audience.',
   },
 ];
 

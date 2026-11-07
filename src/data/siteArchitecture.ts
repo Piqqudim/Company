@@ -46,7 +46,7 @@ export interface PhilosophyPrinciple {
 export const CORPORATE_IDENTITY = {
   name: 'Piqqudim',
   positioning: 'Rendering the unseen.',
-  secondaryPositioning: 'Started Here. Built Everywhere.',
+  secondaryPositioning: 'Rendering the unseen.',
   mantra: 'We build.',
   coreDefinition:
     'Piqqudim is a technology company building software, graphics technology, game technology, developer tools, digital platforms, and intelligent systems.',
