@@ -224,7 +224,7 @@ export const TEAM_MEMBERS: PersonRecord[] = [
     areaOfWork: 'Engineering, Product',
     biography: 'Interested in Computer Graphics, System Design, and Marketing.',
     image: {
-      url: '/assets/image/taiwo.png',
+      url: '/assets/image/kenny.png',
       alt: 'Portrait of Kehinde Ibirogba, Software Engineer',
     },
   },
@@ -237,7 +237,7 @@ export const TEAM_MEMBERS: PersonRecord[] = [
     areaOfWork: 'Engineering, Product',
     biography: 'Interested in Programming Languages, Computer Hardware and Chips, and Software as a Service (SaaS). A polymath with a passion for exploring knowledge across multiple disciplines.',
     image: {
-      url: '/assets/image/kenny.png',
+      url: '/assets/image/taiwo.png',
       alt: 'Portrait of Taiwo Ibirogba, Backend Software Engineer',
     },
   },
